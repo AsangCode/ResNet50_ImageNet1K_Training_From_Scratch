@@ -4,12 +4,38 @@ This guide explains how to download, extract, and organize the ImageNet-1K datas
 
 ## 1. EC2 and EBS Setup
 
-### EC2 Instance Requirements
-- Instance Type: c5.4xlarge (recommended)
-  - 16 vCPUs
-  - 32GB RAM
+### EC2 Instance Selection
+When selecting an EC2 instance for downloading and processing the ImageNet dataset, consider these cost-effective options:
+
+- **c5.2xlarge** (Budget option)
+  - 8 vCPUs, 16GB RAM
   - Good network performance
+  - ~$0.34/hour (On-Demand)
+  - Sufficient for downloading and basic extraction
+
+- **c5.4xlarge** (Recommended)
+  - 16 vCPUs, 32GB RAM
+  - Better network performance
+  - ~$0.68/hour (On-Demand)
+  - Faster extraction and processing
+
+- **m5.2xlarge** (More memory)
+  - 8 vCPUs, 32GB RAM
+  - ~$0.38/hour (On-Demand)
+  - Good if you need more memory for processing
+
+- **Spot Instances**: Consider using spot instances for 50-70% cost savings
+
 - AMI: Ubuntu Server 22.04 LTS
+
+### Connecting to Your EC2 Instance
+```bash
+# Connect to your instance using SSH (replace with your values)
+ssh -i /path/to/your-key.pem ubuntu@your-instance-public-dns
+
+# Example:
+# ssh -i ~/.ssh/my-key.pem ubuntu@ec2-xx-xx-xx-xx.compute-1.amazonaws.com
+```
 
 ### EBS Volume Setup
 1. Create EBS Volume:
